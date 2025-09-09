@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* Dark theme with neon accents */
+:root {
+  --background: #020617;
+  --ink: #020617;
+  --foreground: #f0f9ff;
+  
+  /* Neon color variables */
+  --neon-cyan: #00ffff;
+  --neon-purple: #9333ea;
+  --neon-pink: #ec4899;
+  --neon-blue: #3b82f6;
+  
+  /* Surface colors */
+  --surface-primary: #0f172a;
+  --surface-secondary: #1e293b;
+  --surface-tertiary: #334155;
+  
+  /* Ink colors */
+  --ink-light: #94a3b8;
+  --ink-medium: #64748b;
+  --ink-dark: #475569;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-tech);
+  --font-serif: var(--font-oldenglish);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-purple);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}
+
+/* Selection styles */
+::selection {
+  background: var(--neon-purple);
+  color: var(--foreground);
+}
+
+::-moz-selection {
+  background: var(--neon-purple);
+  color: var(--foreground);
+}
+
+/* Focus styles */
+:focus {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 2px;
+}
+
+/* Neon text glow utility classes */
+.text-glow-cyan {
+  text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 15px var(--neon-cyan);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple), 0 0 15px var(--neon-purple);
+}
+
+.text-glow-pink {
+  text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 0 0 15px var(--neon-pink);
+}
+
+/* Box glow utility classes */
+.box-glow-cyan {
+  box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 15px var(--neon-cyan);
+}
+
+.box-glow-purple {
+  box-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple), 0 0 15px var(--neon-purple);
+}
+
+/* Hover effects */
+.hover-glow:hover {
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 30px var(--neon-cyan);
+}
+
+/* Background patterns */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Custom background utilities */
+.bg-ink {
+  background-color: var(--ink);
+}

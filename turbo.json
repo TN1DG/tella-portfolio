@@ -1,0 +1,75 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**/*.{js,jsx,ts,tsx,css,scss,sass,less}",
+        "public/**/*",
+        "next.config.*",
+        "tailwind.config.*",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**"
+      ],
+      "env": [
+        "NODE_ENV",
+        "SITE_URL"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "inputs": [
+        "src/**/*.{js,jsx,ts,tsx,css,scss,sass,less}",
+        "public/**/*",
+        "next.config.*",
+        "tailwind.config.*",
+        "tsconfig.json"
+      ]
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        ".eslintrc.*",
+        "eslint.config.*",
+        "package.json"
+      ]
+    },
+    "type-check": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        "tsconfig.json",
+        "next-env.d.ts"
+      ]
+    },
+    "sitemap": {
+      "dependsOn": ["build"],
+      "inputs": [
+        "next-sitemap.config.js",
+        ".next/**/*"
+      ],
+      "outputs": [
+        "public/sitemap.xml",
+        "public/robots.txt"
+      ]
+    }
+  },
+  "globalEnv": [
+    "NODE_ENV",
+    "VERCEL_URL",
+    "PORT"
+  ],
+  "globalPassThroughEnv": [
+    "NODE_ENV",
+    "CI",
+    "VERCEL",
+    "VERCEL_ENV"
+  ]
+}
