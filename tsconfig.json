@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext", "webworker"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -13,10 +13,12 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "tsBuildInfoFile": ".next/cache/tsconfig.tsbuildinfo",
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": false,
     "declarationMap": false,
+    "verbatimModuleSyntax": false,
     "plugins": [
       {
         "name": "next"
@@ -30,9 +32,7 @@
       "@/app/*": ["./src/app/*"]
     },
     "types": [
-      "node",
-      "three",
-      "@types/three"
+      "node"
     ]
   },
   "include": [

@@ -38,6 +38,7 @@ export interface Project {
   liveLink?: string;
   githubLink?: string;
   features?: string[];
+  backgroundImage?: string;
 }
 
 export interface Education {
@@ -189,21 +190,61 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: "Sushiman Landing Page",
-    description: "[Brief description from CV]",
+    name: "Sushiman Restaurant",
+    description: "A beautiful Japanese restaurant website featuring authentic sushi dining experience with modern design and smooth user interactions.",
     stack: [
       "HTML5",
       "CSS3", 
       "JavaScript",
-      // Add other technologies used
+      "Responsive Design",
+      "Modern UI/UX",
     ],
     goals: [
-      "Modern Restaurant Website",
-      "Responsive Design",
-      "User-Friendly Interface",
+      "Create immersive Japanese dining experience",
+      "Implement responsive design for all devices",
+      "Showcase authentic Japanese cuisine",
     ],
-    liveLink: "https://sushiman-landing-page.vercel.app", // Update with actual link
-    githubLink: "https://github.com/yourusername/sushiman-landing", // Update if available
+    liveLink: "https://sushi-man-gamma.vercel.app",
+    githubLink: "https://github.com/yourusername/sushiman-landing",
+    backgroundImage: "https://sushi-man-gamma.vercel.app",
+  },
+  {
+    name: "Get More Diners",
+    description: "A comprehensive restaurant marketing platform designed to help restaurants attract more customers through strategic digital marketing tools and analytics.",
+    stack: [
+      "React.js",
+      "JavaScript",
+      "CSS3",
+      "Marketing Tools",
+      "Analytics Dashboard",
+    ],
+    goals: [
+      "Build comprehensive restaurant marketing solution",
+      "Implement customer acquisition strategies",
+      "Create intuitive business dashboard",
+    ],
+    liveLink: "https://get-more-diners-gules.vercel.app",
+    githubLink: "https://github.com/yourusername/get-more-diners",
+    backgroundImage: "https://get-more-diners-gules.vercel.app",
+  },
+  {
+    name: "NEXUS TODO",
+    description: "A futuristic cyber-themed task management system featuring a cutting-edge UI with quantum encryption styling and advanced task prioritization.",
+    stack: [
+      "React.js",
+      "TypeScript",
+      "CSS3",
+      "Cyber UI/UX",
+      "Task Management",
+    ],
+    goals: [
+      "Create immersive cyberpunk task experience",
+      "Implement advanced task prioritization system",
+      "Design futuristic user interface",
+    ],
+    liveLink: "https://futuristic-todo-app.vercel.app",
+    githubLink: "https://github.com/yourusername/futuristic-todo",
+    backgroundImage: "https://futuristic-todo-app.vercel.app",
   },
 ];
 

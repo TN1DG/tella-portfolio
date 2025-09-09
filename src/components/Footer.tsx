@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
 const socialLinks = [
   {
@@ -44,11 +43,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-gradient-to-t from-ink-950 to-ink-900 border-t border-white/10">
-      {/* Background effects */}
+    <footer className="relative bg-gradient-to-b from-brown-950 to-base-dark border-t border-brown-800/30">
+      {/* Subtle coffee-themed background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 left-1/4 w-96 h-96 bg-neon-cyan/3 rounded-full blur-3xl" />
-        <div className="absolute -top-24 right-1/4 w-96 h-96 bg-neon-purple/3 rounded-full blur-3xl" />
+        <div className="absolute -top-12 left-1/3 w-64 h-64 bg-warm-gold/5 rounded-full blur-2xl" />
+        <div className="absolute -top-12 right-1/3 w-64 h-64 bg-warm-amber/5 rounded-full blur-2xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -62,11 +61,11 @@ export default function Footer() {
               viewport={{ once: true }}
             >
               <Link href="/" className="flex items-center mb-4">
-                <span className="font-display text-3xl font-bold text-glow-cyan">
+                <span className="font-display text-3xl font-bold text-accent-gold">
                   Tella
                 </span>
               </Link>
-              <p className="text-gray-400 text-sm leading-relaxed max-w-md">
+              <p className="text-on-dark opacity-80 text-sm leading-relaxed max-w-md">
                 Full-Stack Developer crafting digital experiences with modern technologies. 
                 Specializing in React, TypeScript, and innovative web solutions.
               </p>
@@ -77,12 +76,12 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:text-neon-cyan hover:bg-neon-cyan/10 hover:border-neon-cyan/30 transition-all duration-300 group"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 20 }}
+                    className="p-2 rounded-lg bg-warm-amber/10 border border-brown-700/40 text-on-dark opacity-70 hover:text-accent-gold hover:bg-warm-gold/20 hover:border-warm-gold/50 transition-all duration-200 group"
+                    whileHover={{ scale: 1.05, y: -1 }}
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
                     viewport={{ once: true }}
                   >
                     <span className="sr-only">{social.name}</span>
@@ -103,7 +102,7 @@ export default function Footer() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="font-tech text-sm font-medium text-neon-cyan tracking-wider uppercase mb-4">
+              <h3 className="font-display text-sm font-medium text-accent-amber tracking-wider uppercase mb-4">
                 Quick Links
               </h3>
               <ul className="space-y-3">
@@ -111,9 +110,9 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-400 text-sm hover:text-neon-cyan transition-colors duration-300 group"
+                      className="text-on-dark opacity-80 text-sm hover:text-accent-gold transition-colors duration-200 group"
                     >
-                      <span className="group-hover:text-glow-cyan">
+                      <span className="group-hover:opacity-100">
                         {link.name}
                       </span>
                     </Link>
@@ -131,19 +130,19 @@ export default function Footer() {
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <h3 className="font-tech text-sm font-medium text-neon-cyan tracking-wider uppercase mb-4">
+              <h3 className="font-display text-sm font-medium text-accent-amber tracking-wider uppercase mb-4">
                 Get in Touch
               </h3>
               <div className="space-y-3">
                 <a
                   href="mailto:tella@example.com"
-                  className="text-gray-400 text-sm hover:text-neon-cyan transition-colors duration-300 group block"
+                  className="text-on-dark opacity-80 text-sm hover:text-accent-gold transition-colors duration-200 group block"
                 >
-                  <span className="group-hover:text-glow-cyan">
+                  <span className="group-hover:opacity-100">
                     tella@example.com
                   </span>
                 </a>
-                <p className="text-gray-400 text-sm">
+                <p className="text-on-dark opacity-70 text-sm">
                   Available for freelance projects and full-time opportunities
                 </p>
               </div>
@@ -153,24 +152,24 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <motion.div
-          className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center"
+          className="mt-12 pt-8 border-t border-brown-800/30 flex flex-col sm:flex-row justify-between items-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs text-gray-500">
+          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs text-on-dark opacity-60">
             <p>© {currentYear} Tella. All rights reserved.</p>
             <div className="flex space-x-4">
               <Link
-                href="/privacy"
-                className="hover:text-neon-cyan transition-colors duration-300"
+                href="#privacy"
+                className="hover:text-accent-gold transition-colors duration-200"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="/terms"
-                className="hover:text-neon-cyan transition-colors duration-300"
+                href="#terms"
+                className="hover:text-accent-gold transition-colors duration-200"
               >
                 Terms of Service
               </Link>
@@ -178,18 +177,18 @@ export default function Footer() {
           </div>
           
           <div className="mt-4 sm:mt-0">
-            <p className="text-xs text-gray-500 font-tech">
+            <p className="text-xs text-on-dark opacity-60 font-body">
               Built with{" "}
-              <span className="text-neon-cyan font-medium">Next.js</span>,{" "}
-              <span className="text-neon-purple font-medium">TypeScript</span> &{" "}
-              <span className="text-neon-pink font-medium">Tailwind CSS</span>
+              <span className="text-accent-gold font-medium">Next.js</span>,{" "}
+              <span className="text-accent-amber font-medium">TypeScript</span> &{" "}
+              <span className="text-warm-gold font-medium">Tailwind CSS</span>
             </p>
           </div>
         </motion.div>
       </div>
 
       {/* Decorative bottom border */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-warm-gold/30 to-transparent" />
     </footer>
   );
 }

@@ -14,11 +14,13 @@
       ],
       "outputs": [
         ".next/**",
-        "!.next/cache/**"
+        "!.next/cache/**",
+        "out/**"
       ],
       "env": [
         "NODE_ENV",
-        "SITE_URL"
+        "SITE_URL",
+        "NEXT_PUBLIC_*"
       ]
     },
     "dev": {
@@ -59,12 +61,18 @@
         "public/sitemap.xml",
         "public/robots.txt"
       ]
+    },
+    "clean": {
+      "cache": false,
+      "outputs": []
     }
   },
   "globalEnv": [
     "NODE_ENV",
     "VERCEL_URL",
-    "PORT"
+    "PORT",
+    "TURBOPACK",
+    "NEXT_PUBLIC_*"
   ],
   "globalPassThroughEnv": [
     "NODE_ENV",

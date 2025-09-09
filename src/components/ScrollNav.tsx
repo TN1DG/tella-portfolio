@@ -1,23 +1,24 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Experience", href: "/experience" },
-  { name: "Projects", href: "/projects" },
-  { name: "Education", href: "/education" },
-  { name: "Skills", href: "/skills" },
-  { name: "Contact", href: "/contact" },
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
+  { name: "Education", href: "#education" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
 ];
 
-export default function Nav() {
-  const pathname = usePathname();
+interface ScrollNavProps {
+  activeSection: number;
+}
+
+export default function ScrollNav({ activeSection }: ScrollNavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -29,6 +30,14 @@ export default function Nav() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId.replace('#', ''));
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setMobileMenuOpen(false);
+    }
+  };
 
   return (
     <motion.nav
@@ -50,18 +59,21 @@ export default function Nav() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link href="/" className="flex items-center">
+            <button 
+              onClick={() => scrollToSection('home')}
+              className="flex items-center"
+            >
               <span className="font-display text-2xl font-bold text-glow-cyan hover-glow">
                 T
               </span>
-            </Link>
+            </button>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-1">
               {navItems.map((item, index) => {
-                const isActive = pathname === item.href;
+                const isActive = activeSection === index;
                 
                 return (
                   <motion.div
@@ -71,8 +83,8 @@ export default function Nav() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Link
-                      href={item.href}
+                    <button
+                      onClick={() => scrollToSection(item.href)}
                       className={cn(
                         "relative px-3 py-2 rounded-lg text-sm font-tech tracking-wide transition-all duration-300 group",
                         isActive
@@ -121,11 +133,27 @@ export default function Nav() {
                           filter: "drop-shadow(0 0 4px currentColor)"
                         }}
                       />
-                    </Link>
+                    </button>
                   </motion.div>
                 );
               })}
             </div>
+          </div>
+
+          {/* Scroll Progress Indicator */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="relative w-32 h-1 bg-gray-700 rounded-full overflow-hidden">
+              <motion.div 
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-neon-cyan to-neon-purple rounded-full"
+                style={{
+                  width: `${((activeSection + 1) / navItems.length) * 100}%`
+                }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
+            <span className="font-tech text-xs text-gray-400">
+              {activeSection + 1}/{navItems.length}
+            </span>
           </div>
 
           {/* Mobile menu button */}
@@ -173,7 +201,7 @@ export default function Nav() {
           >
             <div className="px-2 pt-2 pb-3 space-y-1 bg-ink-950/95 backdrop-blur-xl border-t border-white/10">
               {navItems.map((item, index) => {
-                const isActive = pathname === item.href;
+                const isActive = activeSection === index;
                 
                 return (
                   <motion.div
@@ -182,30 +210,45 @@ export default function Nav() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Link
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
+                    <button
+                      onClick={() => scrollToSection(item.href)}
                       className={cn(
-                        "block px-3 py-2 rounded-lg text-base font-tech tracking-wide transition-all duration-300",
+                        "block w-full text-left px-3 py-2 rounded-lg text-base font-tech tracking-wide transition-all duration-300",
                         isActive
                           ? "text-neon-cyan bg-neon-cyan/10 shadow-[inset_0_0_10px_rgba(0,255,255,0.2)]"
                           : "text-gray-300 hover:text-neon-cyan hover:bg-white/5"
                       )}
                     >
-                      <span className="flex items-center">
-                        {item.name}
+                      <span className="flex items-center justify-between">
+                        <span>{item.name}</span>
                         {isActive && (
                           <motion.div
-                            className="ml-2 w-1 h-1 rounded-full bg-neon-cyan"
+                            className="w-1 h-1 rounded-full bg-neon-cyan"
                             animate={{ scale: [1, 1.2, 1] }}
                             transition={{ repeat: Infinity, duration: 2 }}
                           />
                         )}
                       </span>
-                    </Link>
+                    </button>
                   </motion.div>
                 );
               })}
+              
+              {/* Mobile Progress */}
+              <div className="px-3 py-4 flex items-center gap-3">
+                <div className="flex-1 h-1 bg-gray-700 rounded-full overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-gradient-to-r from-neon-cyan to-neon-purple rounded-full"
+                    style={{
+                      width: `${((activeSection + 1) / navItems.length) * 100}%`
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+                <span className="font-tech text-xs text-gray-400">
+                  {activeSection + 1}/{navItems.length}
+                </span>
+              </div>
             </div>
           </motion.div>
         )}

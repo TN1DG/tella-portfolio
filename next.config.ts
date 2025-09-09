@@ -13,8 +13,16 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 7, // 1 week
   },
   
-  // Webpack configuration for production builds
-  webpack: (config, { isServer, dev }) => {
+  // Enable Turbopack for development (stable features only)
+  // Turbopack-specific settings are handled via CLI flags and environment variables
+  
+  // Webpack configuration for production builds (fallback when not using Turbopack)
+  webpack: (config, { isServer, dev, webpack }) => {
+    // Only apply webpack optimizations when not using Turbopack
+    if (process.env.TURBOPACK) {
+      return config;
+    }
+    
     // Three.js optimizations
     if (!isServer) {
       config.resolve.fallback = {
@@ -45,13 +53,17 @@ const nextConfig: NextConfig = {
   
   // Experimental features
   experimental: {
-    // optimizeCss: true, // Disabled for Turbopack compatibility
     optimizePackageImports: [
       'framer-motion',
       '@react-three/fiber',
       '@react-three/drei',
+      '@react-three/postprocessing',
       'three',
+      'three-globe',
       'lucide-react',
+      'clsx',
+      'class-variance-authority',
+      'tailwind-merge',
     ],
     webpackBuildWorker: true,
     parallelServerCompiles: true,

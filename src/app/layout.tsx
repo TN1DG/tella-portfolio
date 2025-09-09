@@ -1,23 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Orbitron } from "next/font/google";
-import { UnifrakturMaguntia } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { initPerformanceMonitoring } from "@/lib/performance";
 
+// Body font - Inter
 const inter = Inter({
-  variable: "--font-body",
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const orbitron = Orbitron({
-  variable: "--font-tech",
+// Display font for headings - Plus Jakarta Sans
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
-});
-
-const unifrakturMaguntia = UnifrakturMaguntia({
-  variable: "--font-oldenglish",
-  subsets: ["latin"],
-  weight: "400",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -68,10 +66,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.variable} ${orbitron.variable} ${unifrakturMaguntia.variable} antialiased font-body bg-ink text-white`}
-      >
+    <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable}`}>
+      <body className="antialiased font-sans bg-base-cream text-base-text overflow-x-hidden">
         {children}
         <script
           dangerouslySetInnerHTML={{

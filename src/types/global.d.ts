@@ -25,13 +25,6 @@ declare module '*.woff2' {
   export default content;
 }
 
-// Three.js module augmentations for better TypeScript support
-declare module 'three/examples/jsm/*' {
-  import { Object3D } from 'three';
-  const content: any;
-  export default content;
-  export * from 'three';
-}
 
 // Framer Motion optimizations
 declare module 'framer-motion' {
@@ -56,7 +49,6 @@ declare global {
 declare global {
   interface Window {
     __TURBOPACK__?: boolean;
-    __THREE_DEVTOOLS__?: any;
   }
 }
 

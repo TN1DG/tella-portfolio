@@ -31,13 +31,15 @@ const buttonVariants = cva(
 )
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "onMouseEnter" | "onMouseLeave" | "onFocus" | "onBlur" | "disabled" | "type" | "id" | "tabIndex" | "aria-label" | "title">,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+  asChild?: boolean;
+  children?: React.ReactNode;
+  className?: string;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, ...props }, ref) => {
     return (
       <motion.button
         className={cn(buttonVariants({ variant, size, className }))}

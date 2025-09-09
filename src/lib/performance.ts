@@ -98,13 +98,24 @@ export function monitorMemoryUsage() {
   if (!isDevelopment || !isTurbopack || !('memory' in performance)) return;
 
   setInterval(() => {
-    const memory = (performance as any).memory;
+    const memory = (performance as PerformanceWithMemory).memory;
     console.log('🧠 Memory usage:', {
       used: `${Math.round(memory.usedJSHeapSize / 1024 / 1024)} MB`,
       total: `${Math.round(memory.totalJSHeapSize / 1024 / 1024)} MB`,
       limit: `${Math.round(memory.jsHeapSizeLimit / 1024 / 1024)} MB`,
     });
   }, 30000); // Log every 30 seconds
+}
+
+// Type definition for Performance with memory support
+interface MemoryInfo {
+  usedJSHeapSize: number;
+  totalJSHeapSize: number;
+  jsHeapSizeLimit: number;
+}
+
+interface PerformanceWithMemory extends Performance {
+  memory: MemoryInfo;
 }
 
 // Initialize performance monitoring

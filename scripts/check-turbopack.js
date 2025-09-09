@@ -32,20 +32,29 @@ function checkPackageJson() {
 
   const pkg = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
   const hasDevScript = pkg.scripts?.dev?.includes('--turbopack');
+  const hasFastScript = pkg.scripts?.['dev:fast']?.includes('--turbopack');
+  const hasTurboScript = pkg.scripts?.['build:turbo']?.includes('--turbopack');
+  const hasCleanTurboScript = pkg.scripts?.['clean:turbo'];
   const hasRequiredDeps = [
     'three',
+    'three-globe',
     '@react-three/fiber',
     '@react-three/drei',
+    '@react-three/postprocessing',
     'framer-motion',
     'class-variance-authority',
     'clsx',
+    'tailwind-merge',
     'next-sitemap'
   ].every(dep => pkg.dependencies?.[dep] || pkg.devDependencies?.[dep]);
 
   log(`${hasDevScript ? '✅' : '❌'} Turbopack dev script configured`, hasDevScript ? GREEN : RED);
+  log(`${hasFastScript ? '✅' : '❌'} Fast dev script with Turbopack`, hasFastScript ? GREEN : RED);
+  log(`${hasTurboScript ? '✅' : '❌'} Turbopack build script configured`, hasTurboScript ? GREEN : RED);
+  log(`${hasCleanTurboScript ? '✅' : '❌'} Turbopack clean script configured`, hasCleanTurboScript ? GREEN : RED);
   log(`${hasRequiredDeps ? '✅' : '❌'} Required dependencies installed`, hasRequiredDeps ? GREEN : RED);
 
-  return hasDevScript && hasRequiredDeps;
+  return hasDevScript && hasFastScript && hasTurboScript && hasRequiredDeps;
 }
 
 function checkNextConfig() {

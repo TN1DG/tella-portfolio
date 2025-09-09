@@ -9,86 +9,77 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['var(--font-oldenglish)', 'serif'],
-        tech: ['var(--font-tech)', 'monospace'],
-        body: ['var(--font-body)', 'sans-serif'],
+        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'], // Default body font
+        display: ['var(--font-jakarta)', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'], // Headings font
       },
       colors: {
-        neon: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
-          cyan: '#00ffff',
-          purple: '#9333ea',
-          pink: '#ec4899',
-          blue: '#3b82f6',
+        // Warm, homey color palette
+        base: {
+          white: '#fefefe',
+          cream: '#f7f3f0', // Coffee cream background
+          light: '#e8ddd6', // Light coffee background
+          beige: '#d4c4b8', // Coffee beige
+          dark: '#2d1f16', // Deep coffee dark
+          text: '#4a3425', // Coffee brown text
         },
-        ink: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-          950: '#020617',
+        brown: {
+          50: '#f7f3f0',
+          100: '#e8ddd6',
+          200: '#d4c4b8',
+          300: '#b8a089',
+          400: '#9c7c5c',
+          500: '#8b6f47',
+          600: '#7a5d3c',
+          700: '#654c32',
+          800: '#4a3425',
+          900: '#3d2b1e',
+          950: '#2d1f16',
         },
-        surface: {
-          50: '#fafafa',
-          100: '#f4f4f5',
-          200: '#e4e4e7',
-          300: '#d4d4d8',
-          400: '#a1a1aa',
-          500: '#71717a',
-          600: '#52525b',
-          700: '#3f3f46',
-          800: '#27272a',
-          900: '#18181b',
-          950: '#09090b',
+        yellow: {
+          50: '#fefce8',
+          100: '#fef9c3',
+          200: '#fef08a',
+          300: '#fde047',
+          400: '#facc15',
+          500: '#eab308',
+          600: '#ca8a04',
+          700: '#a16207',
+          800: '#854d0e',
+          900: '#713f12',
+          950: '#422006',
         },
+        warm: {
+          yellow: '#d4a574', // Coffee-complementing yellow
+          gold: '#b8965a', // Deep coffee gold
+          amber: '#9c7c5c', // Coffee amber
+          honey: '#8b6f47', // Coffee honey
+        },
+        gradient: {
+          brownYellow: 'linear-gradient(135deg, #654c32 0%, #d4a574 100%)',
+          warmGold: 'linear-gradient(135deg, #4a3425 0%, #b8965a 100%)',
+          cozy: 'linear-gradient(135deg, #2d1f16 0%, #9c7c5c 50%, #d4a574 100%)',
+        },
+      },
+      boxShadow: {
+        soft: '0 2px 10px rgba(0,0,0,0.06)',
+        card: '0 4px 20px rgba(0,0,0,0.08)',
+      },
+      borderRadius: {
+        DEFAULT: '0.75rem', // xl as default
+        '2xl': '1rem',
       },
       animation: {
-        'pulse-neon': 'pulse-neon 2s ease-in-out infinite alternate',
         'float': 'float 6s ease-in-out infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
       },
       keyframes: {
-        'pulse-neon': {
-          '0%': { 
-            textShadow: '0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff',
-          },
-          '100%': { 
-            textShadow: '0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff',
-          },
-        },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
-        glow: {
-          '0%': { 
-            boxShadow: '0 0 5px #9333ea, 0 0 10px #9333ea, 0 0 15px #9333ea',
-          },
-          '100%': { 
-            boxShadow: '0 0 10px #9333ea, 0 0 20px #9333ea, 0 0 30px #9333ea, 0 0 40px #9333ea',
-          },
+          '50%': { transform: 'translateY(-10px)' },
         },
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'neon-gradient': 'linear-gradient(135deg, #00ffff 0%, #9333ea 50%, #ec4899 100%)',
       },
     },
   },
